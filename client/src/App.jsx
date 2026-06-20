@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import './index.css';
 import Navbar from './components/Navbar';
 import TechBackground from './components/TechBackground';
@@ -10,10 +10,25 @@ import Portfolio from './components/Portfolio';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Loader from './components/Loader';
 
 export default function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Hide loader after a short delay (2.5s) to allow 3D assets & content to initialize
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div style={{ position: 'relative', minHeight: '100vh', background: 'var(--clr-bg)' }}>
+    <>
+      <AnimatePresence>
+        {loading && <Loader />}
+      </AnimatePresence>
+      <div style={{ position: 'relative', minHeight: '100vh', background: 'var(--clr-bg)' }}>
       <TechBackground />
       <div style={{ position: 'relative', zIndex: 10 }}>
       <Navbar />
@@ -68,5 +83,6 @@ export default function App() {
       </a>
       </div>
     </div>
+    </>
   );
 }
