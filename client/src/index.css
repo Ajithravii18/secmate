@@ -1,0 +1,411 @@
+/* ============================================
+   SECMATE TECHNOLOGIES — CITIVE-INSPIRED DESIGN SYSTEM
+   Theme: Pure black, white accents, Playfair Display serif
+   ============================================ */
+
+/* === RESET & BASE === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* ── Background ── */
+  --clr-bg:           #ffffff;
+  --clr-bg-2:         #fafafa;
+  --clr-bg-3:         #f4f4f5;
+  --clr-surface:      rgba(0,0,0,0.02);
+  --clr-surface-2:    rgba(0,0,0,0.04);
+  --clr-surface-hover:rgba(0,0,0,0.03);
+
+  /* ── Borders ── */
+  --clr-border:       rgba(0,0,0,0.08);
+  --clr-border-2:     rgba(0,0,0,0.15);
+
+  /* ── Accent — dark based ── */
+  --clr-accent:       #000000;
+  --clr-accent-dim:   rgba(0,0,0,0.12);
+  --clr-accent-glow:  rgba(0,0,0,0.08);
+  --clr-accent-mid:   rgba(0,0,0,0.5);
+
+  /* ── Status colors ── */
+  --clr-live:         #22c55e;   /* green "LIVE" dot */
+  --clr-warm:         #d4a76a;   /* warm highlight for serif italic */
+
+  /* ── Text ── */
+  --clr-text:         #111111;
+  --clr-text-dim:     rgba(0,0,0,0.65);
+  --clr-text-muted:   rgba(0,0,0,0.45);
+
+  /* ── Typography ── */
+  --font-display:     'DM Sans', sans-serif;        /* UI headings, nav, labels */
+  --font-serif:       'Playfair Display', serif;    /* italic emphasis words */
+  --font-body:        'DM Sans', sans-serif;        /* body copy */
+  --font-mono:        'DM Mono', monospace;         /* tags, labels, stats */
+
+  /* ── Spacing ── */
+  --space-xs:   0.25rem;
+  --space-sm:   0.5rem;
+  --space-md:   1rem;
+  --space-lg:   1.5rem;
+  --space-xl:   2.5rem;
+  --space-2xl:  4rem;
+  --space-3xl:  6rem;
+
+  /* ── Radius ── */
+  --radius-sm:  0.25rem;
+  --radius-md:  0.5rem;
+  --radius-lg:  0.875rem;
+  --radius-xl:  1.5rem;
+  --radius-full:9999px;
+
+  /* ── Transitions ── */
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast:   150ms;
+  --dur-mid:    300ms;
+  --dur-slow:   600ms;
+
+  /* ── Shadows ── */
+  --shadow-card: 0 8px 32px rgba(0,0,0,0.6);
+  --shadow-sm:   0 2px 8px rgba(0,0,0,0.4);
+}
+
+/* === HTML / BODY === */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--clr-bg); }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.4); }
+
+/* === SELECTION === */
+::selection {
+  background: rgba(0,0,0,0.15);
+  color: #000;
+}
+
+/* === TYPOGRAPHY SCALE === */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--clr-text);
+}
+
+/* Serif italic emphasis — matches Citive's bold italic words */
+.serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2.75rem, 6vw, 5.25rem); }
+h2 { font-size: clamp(2rem, 4vw, 3.5rem); }
+h3 { font-size: clamp(1.1rem, 2vw, 1.5rem); }
+h4 { font-size: 1rem; }
+
+p {
+  color: var(--clr-text-dim);
+  line-height: 1.72;
+  font-size: 0.95rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img { max-width: 100%; display: block; }
+
+/* === LAYOUT === */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+.section {
+  padding: 6rem 0;
+}
+
+/* === SECTION LABEL === */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: rgba(0,0,0,0.3);
+}
+
+/* === GRADIENT TEXT (dark → grey) === */
+.gradient-text {
+  background: linear-gradient(135deg, #000000 0%, rgba(0,0,0,0.55) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* === GLASS CARD === */
+.glass-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* === BUTTONS === */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.6rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  border: none;
+  letter-spacing: 0.01em;
+  transition: all var(--dur-mid) var(--ease-out);
+  text-decoration: none;
+}
+
+/* Primary: black bg, white text */
+.btn-primary {
+  background: #000000;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: rgba(0,0,0,0.85);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+/* Ghost: transparent with border — like Citive nav items */
+.btn-ghost {
+  background: transparent;
+  color: var(--clr-text);
+  border: 1px solid var(--clr-border);
+}
+
+.btn-ghost:hover {
+  border-color: var(--clr-border-2);
+  background: var(--clr-surface-2);
+  transform: translateY(-2px);
+}
+
+/* Ghost dark */
+.btn-ghost-dark {
+  background: rgba(0,0,0,0.03);
+  color: var(--clr-text);
+  border: 1px solid var(--clr-border);
+}
+
+.btn-ghost-dark:hover {
+  background: rgba(0,0,0,0.06);
+  border-color: rgba(0,0,0,0.2);
+}
+
+/* === TAGS === */
+.tag {
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(0,0,0,0.1);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.03);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* === DIVIDER === */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--clr-border) 30%, var(--clr-border) 70%, transparent);
+}
+
+/* === GRID BG === */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* === ANIMATIONS === */
+@keyframes scanline {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .container { padding: 0 1.5rem; }
+  .section { padding: 4rem 0; }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 1.25rem; }
+}
+
+/* ============================================
+   LENS APERTURE LOADING SCREEN
+   ============================================ */
+
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.lens-loader-container {
+  position: fixed;
+  inset: 0;
+  background: #000000;
+  z-index: 1; /* Sits behind the main app z-index: 10 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Outer Lens Ring */
+.lens-ring {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-top-color: rgba(255, 255, 255, 0.6);
+  border-left-color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: lens-spin 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.8) inset;
+}
+
+/* Inner Camera Core */
+.lens-core {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #333, #050505);
+  box-shadow: 0 0 10px rgba(0, 50, 255, 0.2), inset 0 0 5px rgba(255,255,255,0.1);
+  position: relative;
+}
+.lens-core::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #020205;
+  box-shadow: inset 0 0 4px #003366;
+}
+
+/* Crosshairs */
+.lens-crosshair-x,
+.lens-crosshair-y {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.15);
+}
+.lens-crosshair-x {
+  width: 300px;
+  height: 1px;
+}
+.lens-crosshair-y {
+  width: 1px;
+  height: 300px;
+}
+
+/* Text */
+.lens-loader-text {
+  position: absolute;
+  bottom: 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.lens-loader-text .blink {
+  color: #ff0033;
+  font-size: 1rem;
+}
+
+@keyframes lens-spin {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.05); }
+  100% { transform: rotate(360deg) scale(1); }
+}

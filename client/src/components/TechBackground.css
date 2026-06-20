@@ -1,0 +1,73 @@
+.global-bg-tech {
+  position: fixed;
+  inset: 0;
+  background: var(--clr-bg);
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.global-bg-tech::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 80% at 50% 50%, transparent 0%, var(--clr-bg) 100%);
+  z-index: 2;
+}
+
+/* Radar Sweep */
+.radar-sweep {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent 70%, rgba(24, 119, 242, 0.05) 100%);
+  animation: radar 10s linear infinite;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+/* Moving Beams */
+.bg-beam {
+  position: absolute;
+  width: 1px;
+  height: 100vh;
+  background: linear-gradient(to bottom, transparent, rgba(0, 85, 255, 0.08), transparent);
+  animation: scanVertical 8s ease-in-out infinite alternate;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+.bg-beam-1 { left: 20%; animation-delay: 0s; }
+.bg-beam-2 { left: 80%; height: 150vh; animation-duration: 12s; animation-delay: -3s; }
+
+@keyframes radar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes scanVertical {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(50%); }
+}
+
+/* Interactive Cursor Aura */
+.interactive-aura {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 85, 255, 0.12) 0%, rgba(0, 150, 255, 0.04) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+.global-canvas-container {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
